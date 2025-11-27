@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 048e1333f166b23489e5511128a40289
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - onDamagedEvent: {instanceID: 0}
+  - onEnemyDiedEvent: {instanceID: 0}
+  - onEnemyDiedEvent_GO: {instanceID: 0}
+  - onEnemyDiedEvent_Void: {instanceID: 0}
+  - enemyData: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

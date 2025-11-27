@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c884ff5f01ce348bcea7990760e265, type: 3}
+  m_Name: MagicEnemyData
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  moveSpeed: 2
+  damage: 5
+  detectedRadius: 10
+  enemyPrefab: {fileID: 909008194128126981, guid: 9534a93547ddaac46aedb5cfe4e482c0,
+    type: 3}
+  experienceGemPrefab: {fileID: 5743393924969176234, guid: baa25e8ad1ed85945ad22d1f020bca46,
+    type: 3}
+  experienceValue: 10
+  projectilePrefab: {fileID: 2026840960752475999, guid: 771745eb0e6477b4a90c590e6a84e545,
+    type: 3}
+  projectileSpeed: 1.5
+  projectileLifeTime: 10

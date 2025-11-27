@@ -1,0 +1,11 @@
+require("Object")
+require("InitClass")
+require("ItemData")
+require("PlayerData")
+require("BasePanel")
+require('MainPanel_OO')
+require("BagPanel_OO")
+require("ItemGrid")
+
+PlayerData:Init(function() PlayerData:PrintFinished() end)
+MainPanel:ShowPanel()

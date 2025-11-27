@@ -1,0 +1,95 @@
+BasePanel:subClass("BagPanel")
+BagPanel.items = {}
+function BagPanel:Init()
+    self.base.Init(self,"BagPanel",
+        function()
+            self.controls["togEquip"]["Toggle"].onValueChanged:AddListener
+            (
+                function(value)
+                    if value then self:ChangeType(1) end
+                end
+            )
+            self.controls["togItem"]["Toggle"].onValueChanged:AddListener
+            (
+                function(value)
+                    if value then self:ChangeType(2) end
+                end
+            )
+            self.controls["togGem"]["Toggle"].onValueChanged:AddListener
+            (
+                function(value)
+                    if value then self:ChangeType(3) end
+                end
+            )
+            self.controls["btnClose"]["Button"].onClick:AddListener
+            (
+                function()
+                    self:OnCloseBtnClick()
+                end
+            )
+            self:ChangeType(1)
+        end
+    )
+end
+
+function BagPanel:ShowBagPanel()
+    self.base.ShowPanel(self)
+    if self.panelObj then 
+        self.controls["togEquip"]["Toggle"].isOn = true
+        self:ChangeType(1)
+    end
+end
+function BagPanel:HidePanel()
+    self.base.HidePanel(self)
+end
+function BagPanel:OnCloseBtnClick()
+    self:HidePanel()
+end
+
+function BagPanel:ChangeType(type)
+    if self.nowType == type then
+        return
+    end
+    self.nowType = type -- 立即更新，防止并发
+
+    -- 1. 隐藏所有当前显示的物品
+    self:HideItems()
+
+    -- 2. 获取目标物品数据
+    local nowItems = nil
+    if type == 1 then
+        nowItems = PlayerData.equips
+    elseif type == 2 then
+        nowItems = PlayerData.items
+    else
+        nowItems = PlayerData.gems
+    end
+
+    -- 3. 遍历数据，更新或创建格子
+    for i = 1, #nowItems do
+        -- 捕获循环变量，解决异步闭包问题
+        local index = i
+        local currentItemData = nowItems[index]
+
+        if self.items[currentItemData.id] then
+             -- 如果物品已在池中，直接激活
+             self.items[currentItemData.id]:SetActive(true)
+        else
+            local grid = ItemGrid:new()
+            grid:Init(self.controls["svBag"]["ScrollRect"].transform:Find("Viewport"):Find("Content"),(index - 1) % 4 * 135, math.floor((index - 1) / 4) * 135,
+                function()
+                    grid:InitData(currentItemData)
+                    self.items[currentItemData.id] = grid.obj
+                end
+            )
+        end
+    end
+end
+
+function BagPanel:HideItems()
+    for _, itemObj in pairs(self.items) do
+        if itemObj then
+            itemObj:SetActive(false)
+        end
+    end
+end

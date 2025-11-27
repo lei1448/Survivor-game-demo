@@ -1,0 +1,13 @@
+{
+    "diagnostics": {
+        "disable": [
+            "undefined-global",
+            "undefined-field",
+            "need-check-nil",
+            "unnecessary-if",
+            "assign-type-mismatch",
+            "param-type-not-match",
+            "inject-field"
+        ]
+    }
+}
